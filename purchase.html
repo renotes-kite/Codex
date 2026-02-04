@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Purchase | NovaMart</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container page">
+    <p class="breadcrumb"><a href="index.html">← Back to products</a></p>
+    <section class="purchase-panel">
+      <div>
+        <h1>Complete your purchase</h1>
+        <p class="subhead">We will email your confirmation within minutes.</p>
+      </div>
+      <form>
+        <div>
+          <label for="product">Product</label>
+          <select id="product" name="product">
+            <option>Astra Smartwatch</option>
+            <option>Orbit ANC Headphones</option>
+            <option>Halo Instant Camera</option>
+            <option>Lumen Smart Lamp</option>
+          </select>
+        </div>
+        <div>
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="Jordan Lee" />
+        </div>
+        <div>
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="jordan@email.com" />
+        </div>
+        <div>
+          <label for="address">Shipping address</label>
+          <textarea id="address" name="address" rows="3" placeholder="123 Nova Street, Austin, TX"></textarea>
+        </div>
+        <button class="btn" type="submit">Confirm Purchase</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
