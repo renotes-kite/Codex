@@ -1,0 +1,173 @@
+:root {
+  --bg: #11141b;
+  --panel: #171b24;
+  --text: #f3f4f6;
+  --muted: #9ca3af;
+  --accent: #5865f2;
+  --track-h: 72px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+button, select, input {
+  background: #202533;
+  color: var(--text);
+  border: 1px solid #2f374a;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-bottom: 1px solid #2a3140;
+}
+.topbar-actions { display: flex; gap: 8px; }
+.file-upload { position: relative; overflow: hidden; }
+.file-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.layout { display: grid; grid-template-columns: 300px 1fr; height: calc(100vh - 56px); }
+.panel { background: var(--panel); border-right: 1px solid #2a3140; }
+.library-panel { overflow: auto; }
+.panel-title { font-weight: 600; padding: 10px; border-bottom: 1px solid #2a3140; }
+.media-library { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+.media-item {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  background: #1f2532;
+  border: 1px solid #2f374a;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: grab;
+}
+.media-item .thumb { width: 70px; height: 45px; object-fit: cover; border-radius: 4px; background: #0f1219; }
+.media-item .name { font-size: 13px; font-weight: 600; }
+.media-item .duration { font-size: 12px; color: var(--muted); }
+.editor-main { display: grid; grid-template-rows: 1fr 300px; min-width: 0; }
+.preview-panel { padding: 10px; border-bottom: 1px solid #2a3140; }
+.preview-wrap { display: flex; justify-content: center; }
+.preview-viewport {
+  position: relative;
+  width: min(900px, 100%);
+  aspect-ratio: 16 / 9;
+  border: 1px solid #2f374a;
+  background: #0d1017;
+  overflow: hidden;
+}
+.preview-viewport video, .preview-viewport img {
+  width: 100%; height: 100%; object-fit: contain; display: none;
+}
+.preview-text {
+  position: absolute;
+  inset: auto 0 10% 0;
+  text-align: center;
+  font-size: 44px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 1px 1px 10px rgba(0,0,0,.7);
+  pointer-events: none;
+}
+.controls-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px; }
+.timeline-panel { display: grid; grid-template-rows: auto 1fr; min-height: 0; }
+.timeline-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid #2a3140;
+}
+.export-controls { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.timeline-scroller {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+}
+.timeline-ruler {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  height: 28px;
+  background: #151a24;
+  border-bottom: 1px solid #2a3140;
+}
+.ruler-mark {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-left: 1px solid #3c4559;
+  font-size: 11px;
+  padding-left: 4px;
+  color: var(--muted);
+}
+.track {
+  position: relative;
+  height: var(--track-h);
+  border-bottom: 1px solid #273044;
+  background: #141926;
+}
+.track-header {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  width: 160px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  background: #1d2332;
+  border-right: 1px solid #2f374a;
+}
+.track-body {
+  position: absolute;
+  left: 160px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.clip {
+  position: absolute;
+  top: 9px;
+  height: calc(var(--track-h) - 18px);
+  border-radius: 6px;
+  border: 1px solid #374054;
+  background: #2b5bd4;
+  color: #f8fafc;
+  font-size: 12px;
+  padding: 8px;
+  overflow: hidden;
+  user-select: none;
+}
+.clip.audio { background: #0e9f6e; }
+.clip.text { background: #a855f7; }
+.clip.selected { outline: 2px solid #fff; }
+.resize-handle {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  cursor: ew-resize;
+  background: rgba(255,255,255,.25);
+}
+.resize-left { left: 0; }
+.resize-right { right: 0; }
+.playhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ef4444;
+  z-index: 5;
+  pointer-events: none;
+}
+@media (max-width: 1000px) {
+  .layout { grid-template-columns: 1fr; }
+  .library-panel { max-height: 200px; border-right: none; border-bottom: 1px solid #2a3140; }
+}

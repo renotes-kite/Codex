@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LiteCut - Browser Video Editor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>LiteCut</h1>
+      <div class="topbar-actions">
+        <label class="file-upload">
+          Import Media
+          <input id="mediaInput" type="file" multiple accept="video/*,audio/*,image/*" />
+        </label>
+        <button id="addTextBtn">Add Text Clip</button>
+        <button id="splitBtn">Split at Playhead</button>
+        <button id="deleteClipBtn">Delete Clip</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="library-panel panel">
+        <div class="panel-title">Media Library</div>
+        <div id="mediaLibrary" class="media-library"></div>
+      </aside>
+
+      <section class="editor-main">
+        <div class="preview-panel panel">
+          <div class="preview-wrap">
+            <div id="previewViewport" class="preview-viewport">
+              <video id="previewVideo" playsinline muted></video>
+              <img id="previewImage" alt="preview frame" />
+              <div id="previewText" class="preview-text"></div>
+            </div>
+          </div>
+
+          <div class="controls-row">
+            <button id="backBtn">⏪ 5s</button>
+            <button id="playPauseBtn">▶ Play</button>
+            <button id="forwardBtn">5s ⏩</button>
+            <label>
+              Speed
+              <select id="speedSelect">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+              </select>
+            </label>
+            <span id="timecode">00:00.00 / 00:00.00</span>
+          </div>
+
+          <div class="controls-row">
+            <label>Brightness <input id="brightness" type="range" min="0" max="200" value="100" /></label>
+            <label>Contrast <input id="contrast" type="range" min="0" max="200" value="100" /></label>
+            <label>Saturation <input id="saturation" type="range" min="0" max="200" value="100" /></label>
+            <label>Grayscale <input id="grayscale" type="range" min="0" max="100" value="0" /></label>
+            <label>Sepia <input id="sepia" type="range" min="0" max="100" value="0" /></label>
+          </div>
+
+          <div class="controls-row" id="audioControls">
+            <label>Volume <input id="volume" type="range" min="0" max="1" step="0.01" value="1" /></label>
+            <label><input id="mute" type="checkbox" /> Mute</label>
+            <label>Fade In <input id="fadeIn" type="number" min="0" step="0.1" value="0" /></label>
+            <label>Fade Out <input id="fadeOut" type="number" min="0" step="0.1" value="0" /></label>
+          </div>
+        </div>
+
+        <div class="timeline-panel panel">
+          <div class="timeline-toolbar">
+            <button id="addVideoTrack">+ Video Track</button>
+            <button id="addAudioTrack">+ Audio Track</button>
+            <button id="addTextTrack">+ Text Track</button>
+            <button id="zoomOut">-</button>
+            <span id="zoomLabel">100 px/s</span>
+            <button id="zoomIn">+</button>
+            <div class="export-controls">
+              <select id="resolutionSelect">
+                <option value="854x480">480p</option>
+                <option value="1280x720" selected>720p</option>
+                <option value="1920x1080">1080p</option>
+              </select>
+              <button id="exportBtn">Export MP4</button>
+              <progress id="exportProgress" value="0" max="100"></progress>
+            </div>
+          </div>
+          <div id="timelineScroller" class="timeline-scroller">
+            <div id="timelineRuler" class="timeline-ruler"></div>
+            <div id="tracksContainer" class="tracks"></div>
+            <div id="playhead" class="playhead"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <template id="mediaItemTpl">
+      <article class="media-item" draggable="true">
+        <img class="thumb" alt="thumb" />
+        <div class="meta">
+          <div class="name"></div>
+          <div class="duration"></div>
+        </div>
+        <button class="remove">✕</button>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
